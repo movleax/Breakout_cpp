@@ -1,0 +1,113 @@
+
+abstract iGame
+    Variables:
+
+    Methods:
+        Draw() 
+        Logic()
+        Update()
+        CheckCollisions()
+        CheckForDeadObjects()
+        Cycle()
+        CheckStateChange(GameState)
+
+
+Game : public iGame
+    Variables:
+        GameState* _gameState
+    Methods:
+
+GameState : public iGame
+    Variables:
+
+    Methods:
+
+Vector
+    Variables:
+        float X;
+        float Y;
+    Methods:
+        Vector(x, y)
+        Vector(const Vector&)
+        GetX()
+        GetY()
+        SetX(float)
+        SetY(float)
+        SetVector(const Vector&)
+        Vector GetVector()
+
+abstract Collision
+    Variables:
+        Vector position
+    Methods:
+        UpdatePosition(Vector)
+        Vector GetPosition()
+
+CollisionRectangle : public Collision
+    Variables:
+        unsigned W;
+        unsigned H;
+    Methods:
+        GetWidth()
+        GetHeight()
+        
+
+CollisionCircle : public Collision
+    Variables:
+        unsigned R;
+    Methods:
+        GetRadius()
+
+Input
+Command
+LeftCommand
+RightCommand
+
+abstract GameObject
+    Variables:
+        Vector position
+    Methods:
+        UpdatePosition(Vector)
+        Vector GetPosition()
+        Draw() = 0; // pure virtual
+
+abstract Collidable : public GameObject
+    Variables:
+        Collision* collisionObj
+    Methods:
+        override UpdatePosition(Vector) // override to update collision object position
+        Vector GetPosition()
+        Collision GetCollisionObject()
+
+abstract Moveable : public Collidable
+     Variables:
+        Collision* collisionObj
+    Methods:
+        Update() = 0; 
+
+Wall : public Collidable
+    Variables:
+        // needs to make a CollisionRectangle object and assgn that to collisionObj. Do this in the constructor.
+    Methods:
+        Draw()
+
+Brick : public Collidable
+    Variables:
+        // needs to make a CollisionRectangle object and assgn that to collisionObj. Do this in the constructor.
+    Methods:
+        Draw()
+
+
+Paddle : public Moveable
+    Variables:
+        // needs to make a CollisionRectangle object and assgn that to collisionObj. Do this in the constructor.
+    Methods:
+        Draw()
+        Update()
+    
+Ball : public Moveable
+    Variables:
+        // needs to make a CollisionCircle object and assgn that to collisionObj. Do this in the constructor.
+    Methods:
+        Draw()
+        Update()
