@@ -3,111 +3,231 @@ abstract iGame
     Variables:
 
     Methods:
-        Draw() 
-        Logic()
-        Update()
-        CheckCollisions()
-        CheckForDeadObjects()
-        Cycle()
-        CheckStateChange(GameState)
-
+        virtual void Draw() = 0;
+        virtual void Logic() = 0;
+        virtual void Update() = 0;
+        virtual void CheckCollisions() = 0;
+        virtual void Cycle() = 0;
 
 Game : public iGame
     Variables:
         GameState* _gameState
+        sf::RenderWindow window
     Methods:
+        Game()
+        ~Game()
+        void LoadGameState(GameState gameState)
+        void CheckStateChange(GameState)
+
+GameProxy
+    Variables:
+        Game* game
+    Methods:
+        GameProxy(const Game * game)
+        void LoadGameState(GameState gameState)
 
 GameState : public iGame
     Variables:
-
+        GameProxy* gameProxy
+        Input* input
+        std::vector<GameObjects*> gameObjects
     Methods:
+        GameState(const GameProxy * proxy)
+        virtual ~GameState()
+        AddGameObject(GameObject* gameObj)
+        AddInputHandler(Input* input)
+        virtual ~GameState()
+        void HandleDeactivatedObjects()
 
-Vector
+MainGame : public GameState
     Variables:
-        float X;
-        float Y;
+        bool gameHasStarted
     Methods:
-        Vector(x, y)
-        Vector(const Vector&)
-        GetX()
-        GetY()
-        SetX(float)
-        SetY(float)
-        SetVector(const Vector&)
-        Vector GetVector()
-
-abstract Collision
-    Variables:
-        Vector position
-    Methods:
-        UpdatePosition(Vector)
-        Vector GetPosition()
-
-CollisionRectangle : public Collision
-    Variables:
-        unsigned W;
-        unsigned H;
-    Methods:
-        GetWidth()
-        GetHeight()
-        
-
-CollisionCircle : public Collision
-    Variables:
-        unsigned R;
-    Methods:
-        GetRadius()
+        MainGame()
+        ~MainGame()
+        void StartGame()
+        void ResetPlayerAndBall()
 
 Input
-Command
-LeftCommand
-RightCommand
+    Variables:
+        std::vector<Command*> commands
+    Methods:
+        Input()
+        ~Input()
+        AddCommand(Command* command)
+        HandleInput()
+
+abstract Command
+    Variables:
+        GameObject* gameObj
+    Methods:
+        virtual Command(const GameObject * gameObj)
+        virtual ~Command()
+        virtual void Execute() = 0;
+        virtual bool CheckCondition() = 0;
+
+MoveLeftCommand : Command
+    Variables:
+        
+    Methods:
+        LeftCommand(const Player * player)
+        ~LeftCommand()
+        void Execute() override
+        bool CheckCondition() override // use sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
+
+MoveRightCommand : Command
+    Variables:
+        
+    Methods:
+        RightCommand(const Player * player)
+        ~RightCommand()
+        void Execute() override
+        bool CheckCondition() override // use sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
+
+MovePlayerOnMouseCommand : Command
+    Variables:
+        sf::Vector2i position
+    Methods:
+        MovePlayerOnMouseCommand(const Player * player)
+        ~MovePlayerOnMouseCommand()
+        void Execute() override
+        bool CheckCondition() override // sf::Mouse::getPosition() to check if mouse is in updated position, and set sf::Vector2i "position" variable
+
+StartGameCommand : Command
+    Variables:
+        
+    Methods:
+        StartGameCommand(const MainGame * mainGame)
+        ~StartGameCommand()
+        void Execute() override
+        bool CheckCondition() override // use sf::Mouse::isButtonPressed(sf::Mouse::Left)
+
 
 abstract GameObject
     Variables:
-        Vector position
+        Vector2f position
+        bool isActive // will be true by default
     Methods:
-        UpdatePosition(Vector)
-        Vector GetPosition()
-        Draw() = 0; // pure virtual
+        GameObject(const Vector2f& Position)
+        virtual ~GameObject
+        Vector2f GetPosition()
+        bool GetIsActive()
+        void Deactivate() // set isActive boolean to false;
+        virtual void Draw(sf::RenderWindow& window) = 0; // pure virtual
+        virtual void Update() = 0; // pure virtual
 
 abstract Collidable : public GameObject
     Variables:
-        Collision* collisionObj
+        sf::Shape* shape
     Methods:
-        override UpdatePosition(Vector) // override to update collision object position
-        Vector GetPosition()
-        Collision GetCollisionObject()
+        Collidable(const Vector2f& Position)
+        virtual ~Collidable() // need a destructor so that we can be sure the collisionObj pointer gets deleted from memory
+        const Shape * GetShapeObject() // returns the Shape pointer. NOTE I don't know if I have the constant keyword placed correctly
+        virtual void Draw(sf::RenderWindow& window)
 
-abstract Moveable : public Collidable
-     Variables:
-        Collision* collisionObj
-    Methods:
-        Update() = 0; 
-
-Wall : public Collidable
+abstract Moveable : public GameObject
     Variables:
-        // needs to make a CollisionRectangle object and assgn that to collisionObj. Do this in the constructor.
+        Vector2f Velocity
+        float speed;
     Methods:
-        Draw()
+        virtual void SetSpeed(const float& newSpeed)
+        virtual void SetVelocity(const Vector2f& u_Direction) // take in a direction unit vector, scale by the speed, then assign to Velocity
+        virtual void UpdatePosition(const Vector2f& newPosition)
+        virtual void Update(); // add the velocity to the position vector. Keep this method virtual to allow children to override if needed.
 
-Brick : public Collidable
+Wall : public GameObject
     Variables:
-        // needs to make a CollisionRectangle object and assgn that to collisionObj. Do this in the constructor.
+        // need to make a sf::RectangleShape object in constructor and assign that to *shape
     Methods:
-        Draw()
+        Wall(const Vector2f& Position, const unsigned& Width, const unsigned& Height, sf::Color color)
+        ~Wall()
+        Draw(sf::RenderWindow& window) override
+
+Brick : public GameObject
+    Variables:
+        // need to make a sf::RectangleShape object in constructor and assign that to *shape
+    Methods:
+        Brick(const Vector2f& Position, const unsigned& Width, const unsigned& Height, sf::Color& color)
+        ~Brick()
+        Draw(sf::RenderWindow& window) override
 
 
 Paddle : public Moveable
     Variables:
-        // needs to make a CollisionRectangle object and assgn that to collisionObj. Do this in the constructor.
+        // need to make a sf::RectangleShape object in constructor and assign that to *shape
     Methods:
-        Draw()
-        Update()
+        Paddle(const Vector2f& Position, const unsigned& Width, const unsigned& Height, sf::Color& color)
+        ~Paddle()
+        Draw(sf::RenderWindow& window) override
+        Update() override
     
 Ball : public Moveable
     Variables:
-        // needs to make a CollisionCircle object and assgn that to collisionObj. Do this in the constructor.
+        // need to make a sf::CircleShape object in constructor and assign that to *shape
     Methods:
-        Draw()
-        Update()
+        Ball(const Vector2f& Position, const unsigned& Radius, const sf::Color& color)
+        ~Ball()
+        Draw(sf::RenderWindow& window) override
+        Update() override
+
+Player : public Moveable
+    Variables:
+        unsigned lives
+        Paddle paddle
+        unsigned score
+    Methods:
+        void DecrementLife()
+        unsigned GetLives()
+        unsigned GetScore()
+
+GameText : Public GameObject
+    Variables:
+       sf::Text text
+    Methods:
+        GameText(string fontFileName, bool Bold, unsigned Size, sf::Color color)
+        ~GameText()
+
+ScoreText : Public GameText
+    Variables:
+       Player *player
+    Methods:
+        ScoreText(const Player * player)
+
+LivesText : Public GameText
+    Variables:
+       Player *player
+    Methods:
+        LivesText(const Player * player)
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// circle and rectangle collision
+bool intersects(const sf::CircleShape &c, const sf::RectangleShape &r){
+    sf::FloatRect fr = r.getGlobalBounds();
+    sf::Vector2f topLeft(fr.left, fr.top);
+    sf::Vector2f topRight(fr.left + fr.width, fr.top);
+    sf::Vector2f botLeft(fr.left, fr.top + fr.height);
+    sf::Vector2f botRight(fr.left + fr.width, fr.top + fr.height);
+
+    return contains(c, topLeft) || 
+        contains(c, topRight) || 
+        contains(c, botLeft) || 
+        contains(c, botRight);
+}
+
+bool contains(const sf::CircleShape &c, const sf::Vector2f &p){
+    sf::Vector2f center = c.getPosition();
+    float a = (p.x - center.x);
+    float b = (p.y - center.y);
+    a *= a;
+    b *= b;
+    float r = c.getRadius() * c.getRadius();
+
+    return (( a + b ) < r);
+}
+
+// can use this for rectangle on rectangle collision
+if (shape.getGlobalBounds().intersects(shape2.getGlobalBounds()))
+        {
+            int nop = 0;
+        }
