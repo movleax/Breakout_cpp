@@ -1,8 +1,8 @@
 #pragma once
 
-#include "GameProxy.h"
 #include "iGame.h"
 
+class GameProxy;
 
 class GameState : public iGame
 {
@@ -11,14 +11,8 @@ protected:
 	/*Input* input;
 	std::vector<GameObjects*> gameObjects;*/
 public:
-	/*GameState(const GameProxy* proxy)
-	{
-
-	}*/
-	virtual ~GameState()
-	{
-
-	}
+	GameState(const GameProxy* proxy);
+	virtual ~GameState();
 	/*void AddGameObject(GameObject* gameObj)
 	{
 
@@ -27,28 +21,10 @@ public:
 	{
 
 	}*/
-	void HandleDeactivatedObjects()
-	{
-
-	}
-	void Draw() override
-	{
-
-	}
-	void Logic() override
-	{
-
-	}
-	void Update() override
-	{
-
-	}
-	void CheckCollisions() override
-	{
-
-	}
-	void Cycle() override
-	{
-
-	}
+	void HandleDeactivatedObjects();
+	void Draw() override;
+	void Logic() override;
+	void Update() override;
+	void CheckCollisions() override;
+	void Cycle() override;
 };
