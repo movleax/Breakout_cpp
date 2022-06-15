@@ -160,9 +160,12 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameProxy.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="iGame.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="LeftCommand.h" />
+    <ClInclude Include="MainGame.h" />
     <ClInclude Include="Moveable.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Rectangle.h" />
