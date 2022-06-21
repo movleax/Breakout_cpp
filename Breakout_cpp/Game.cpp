@@ -13,7 +13,7 @@ Game::~Game()
 }
 void Game::LoadGameState(GameState* gameState)
 {
-
+	_gameState = gameState;
 }
 void Game::CheckStateChange(GameState* gameState)
 {
@@ -22,6 +22,7 @@ void Game::CheckStateChange(GameState* gameState)
 void Game::Draw() 
 {
 	// Call _gameState->Draw()
+	_gameState->Draw(&window);
 }
 void Game::Logic() 
 {
@@ -53,4 +54,9 @@ void Game::Cycle()
 		Draw();
 		window.display();
 	}
+}
+
+RenderWindow& Game::GetWindowRef()
+{
+	return window;
 }

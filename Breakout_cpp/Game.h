@@ -9,8 +9,8 @@ using namespace sf;
 class Game : public iGame
 {
 	GameState* _gameState;
-	sf::RenderWindow window;
-	
+	RenderWindow window;
+
 public:
 	Game();
 	~Game();
@@ -21,6 +21,7 @@ public:
 	void Update() override;
 	void CheckCollisions() override;
 	void Cycle() override;
+	sf::RenderWindow& GetWindowRef();
 };
 
 

@@ -25,6 +25,7 @@ GameProxy
     Methods:
         GameProxy(const Game * game)
         void LoadGameState(GameState gameState)
+        sf:RenderWindow& GetWindowRef()
 
 GameState : public iGame
     Variables:

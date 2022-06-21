@@ -1,6 +1,9 @@
 #pragma once
 
 #include "iGame.h"
+#include <SFML/Graphics.hpp>
+
+using namespace sf;
 
 class GameProxy;
 
@@ -22,9 +25,10 @@ public:
 
 	}*/
 	void HandleDeactivatedObjects();
-	void Draw() override;
-	void Logic() override;
-	void Update() override;
-	void CheckCollisions() override;
-	void Cycle() override;
+	virtual void Draw() override;
+	virtual void Draw(RenderWindow* window);
+	virtual void Logic() override;
+	virtual void Update() override;
+	virtual void CheckCollisions() override;
+	virtual void Cycle() override;
 };

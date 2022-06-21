@@ -26,6 +26,10 @@ void GameState::Draw()
 {
 
 }
+void GameState::Draw(RenderWindow* window)
+{
+
+}
 void GameState::Logic()
 {
 
