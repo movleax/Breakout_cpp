@@ -126,25 +126,27 @@ abstract Collidable : public GameObject
         const Shape * GetShapeObject() // returns the Shape pointer. NOTE I don't know if I have the constant keyword placed correctly
         virtual void Draw(sf::RenderWindow& window)
 
-abstract Moveable : public GameObject
+abstract Moveable : public Collidable
     Variables:
         Vector2f Velocity
         float speed;
     Methods:
+        Moveable(const Vector2f& Position);
+	    virtual ~Moveable();
         virtual void SetSpeed(const float& newSpeed)
         virtual void SetVelocity(const Vector2f& u_Direction) // take in a direction unit vector, scale by the speed, then assign to Velocity
         virtual void UpdatePosition(const Vector2f& newPosition)
         virtual void Update(); // add the velocity to the position vector. Keep this method virtual to allow children to override if needed.
 
-Wall : public GameObject
+Wall : public Collidable
     Variables:
         // need to make a sf::RectangleShape object in constructor and assign that to *shape
     Methods:
         Wall(const Vector2f& Position, const unsigned& Width, const unsigned& Height, sf::Color color)
         ~Wall()
-        Draw(sf::RenderWindow& window) override
+        // Draw(sf::RenderWindow& window) override // No need to override this one
 
-Brick : public GameObject
+Brick : public Collidable
     Variables:
         // need to make a sf::RectangleShape object in constructor and assign that to *shape
     Methods:

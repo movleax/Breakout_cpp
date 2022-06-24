@@ -16,7 +16,7 @@ public:
 	~Game();
 	void LoadGameState(GameState* gameState);
 	void CheckStateChange(GameState* gameState);
-	void Draw() override;
+	void Draw();
 	void Logic() override;
 	void Update() override;
 	void CheckCollisions() override;

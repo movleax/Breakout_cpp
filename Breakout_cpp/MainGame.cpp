@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "Wall.h"
+
 MainGame::MainGame(const GameProxy* proxy)
 	: GameState(proxy)
 {
@@ -14,7 +16,7 @@ MainGame::MainGame(const GameProxy* proxy)
 
 	//Shape* blah = new CircleShape(10.f);
 
-	shapes.push_back(new CircleShape(rand() % 100 + 10));
+	/*shapes.push_back(new CircleShape(rand() % 100 + 10));
 	shapes.push_back(new CircleShape(rand() % 100 + 10));
 	shapes.push_back(new CircleShape(rand() % 100 + 10));
 	shapes.push_back(new CircleShape(rand() % 100 + 10));
@@ -29,7 +31,17 @@ MainGame::MainGame(const GameProxy* proxy)
 	{
 		(*it)->setPosition(Vector2f(rand() % 500 + 1, rand() % 500 + 1));
 		(*it)->setFillColor(sf::Color::Green);
-	}
+	}*/
+
+	/*Wall* wall = new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green);
+	AddGameObject(wall);*/
+
+	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
+	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
+	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
+	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
+	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
+	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
 }
 MainGame::~MainGame()
 {
@@ -44,20 +56,20 @@ void MainGame::ResetPlayerAndBall()
 
 }
 
-void MainGame::Draw() 
-{
-	throw exception();
-}
+//void MainGame::Draw() 
+//{
+//	throw exception();
+//}
 
-void MainGame::Draw(RenderWindow* window)
-{
-	vector<Shape*>::iterator it;
-
-	for (it = shapes.begin(); it != shapes.end(); it++)
-	{
-		window->draw(**it);
-	}
-}
+//void MainGame::Draw(RenderWindow* window)
+//{
+//	/*vector<Shape*>::iterator it;
+//
+//	for (it = shapes.begin(); it != shapes.end(); it++)
+//	{
+//		window->draw(**it);
+//	}*/
+//}
 
 void MainGame::Logic() 
 {
