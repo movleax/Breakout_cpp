@@ -26,7 +26,7 @@ void Game::Draw()
 }
 void Game::Logic() 
 {
-	// Call _gameState->Logic()
+	_gameState->Logic();
 }
 void Game::Update() 
 {

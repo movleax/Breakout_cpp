@@ -14,11 +14,11 @@ void GameState::AddGameObject(GameObject* gameObj)
 {
 	gameObjects.push_back(gameObj);
 }
-/*
+
 void GameState::AddInputHandler(Input* input)
 {
-
-}*/
+	this->input = input;
+}
 void GameState::HandleDeactivatedObjects()
 {
 
@@ -38,7 +38,7 @@ void GameState::Draw(RenderWindow* window)
 }
 void GameState::Logic()
 {
-
+	input->HandleInput();
 }
 void GameState::Update()
 {

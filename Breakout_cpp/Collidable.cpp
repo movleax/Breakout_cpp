@@ -22,5 +22,8 @@ const Shape* Collidable::GetShapeObject() // returns the Shape pointer. NOTE I d
 
 void Collidable::Draw(sf::RenderWindow* window)
 {
-	window->draw(*shape);
+	if (this->GetIsActive())
+	{
+		window->draw(*shape);
+	}
 }

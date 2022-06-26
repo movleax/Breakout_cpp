@@ -5,6 +5,7 @@
 #include <time.h>
 
 #include "Wall.h"
+#include "MoveLeftCommand.h"
 
 MainGame::MainGame(const GameProxy* proxy)
 	: GameState(proxy)
@@ -36,12 +37,20 @@ MainGame::MainGame(const GameProxy* proxy)
 	/*Wall* wall = new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green);
 	AddGameObject(wall);*/
 
+	Wall* ptr_Wall = new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green);
+
+	AddGameObject(ptr_Wall);
 	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
 	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
 	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
 	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
 	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
-	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
+
+	Input* input = new Input();
+	MoveLeftCommand* moveLeftCmd = new MoveLeftCommand(ptr_Wall);
+	input->AddCommand(moveLeftCmd);
+
+	this->AddInputHandler(input);
 }
 MainGame::~MainGame()
 {
@@ -73,7 +82,7 @@ void MainGame::ResetPlayerAndBall()
 
 void MainGame::Logic() 
 {
-
+	GameState::Logic();
 }
 void MainGame::Update() 
 {
