@@ -3,7 +3,7 @@
 Collidable::Collidable(const Vector2f& Position)
 	:GameObject(Position)
 {
-
+	
 }
 
 Collidable::~Collidable() // need a destructor so that we can be sure the collisionObj pointer gets deleted from memory
@@ -11,6 +11,7 @@ Collidable::~Collidable() // need a destructor so that we can be sure the collis
 	if(shape != 0)
 	{
 		delete shape;
+		shape = 0;
 	}
 }
 

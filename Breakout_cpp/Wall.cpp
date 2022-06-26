@@ -11,6 +11,7 @@ Wall::Wall(const Vector2f& Position, const unsigned& Width, const unsigned& Heig
 Wall::~Wall()
 {
 	delete shape;
+	shape = 0;
 }
 
 // No need to override Draw
