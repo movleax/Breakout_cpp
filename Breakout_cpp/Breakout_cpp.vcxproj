@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Collidable.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Moveable.cpp" />
     <ClCompile Include="MoveLeftCommand.cpp" />
+    <ClCompile Include="MoveRightCommand.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +180,7 @@
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Moveable.h" />
     <ClInclude Include="MoveLeftCommand.h" />
+    <ClInclude Include="MoveRightCommand.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Wall.h" />

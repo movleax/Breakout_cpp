@@ -4,8 +4,10 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "Brick.h"
 #include "Wall.h"
 #include "MoveLeftCommand.h"
+#include "MoveRightCommand.h"
 
 MainGame::MainGame(const GameProxy* proxy)
 	: GameState(proxy)
@@ -38,17 +40,25 @@ MainGame::MainGame(const GameProxy* proxy)
 	AddGameObject(wall);*/
 
 	Wall* ptr_Wall = new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green);
+	Brick* brick = new Brick(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red);
+
 
 	AddGameObject(ptr_Wall);
+	AddGameObject(brick);
+	AddGameObject(new Brick(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red));
+	AddGameObject(new Brick(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red));
 	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
 	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
 	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
 	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
 	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
+
 
 	Input* input = new Input();
 	MoveLeftCommand* moveLeftCmd = new MoveLeftCommand(ptr_Wall);
+	MoveRightCommand* moveRightCmd = new MoveRightCommand(brick);
 	input->AddCommand(moveLeftCmd);
+	input->AddCommand(moveRightCmd);
 
 	this->AddInputHandler(input);
 }

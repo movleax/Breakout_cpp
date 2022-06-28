@@ -152,7 +152,7 @@ Brick : public Collidable
     Methods:
         Brick(const Vector2f& Position, const unsigned& Width, const unsigned& Height, sf::Color& color)
         ~Brick()
-        Draw(sf::RenderWindow& window) override
+        //Draw(sf::RenderWindow& window) override
 
 
 Paddle : public Moveable
