@@ -7,8 +7,10 @@ using namespace sf;
 
 class GameObject
 {
-	sf::Vector2f position;
 	bool isActive; // will be true by default
+
+protected:
+	sf::Vector2f position;
 
 public:
 	GameObject(const sf::Vector2f& Position);

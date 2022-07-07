@@ -1,5 +1,6 @@
 #include "GameProxy.h"
 #include "GameState.h"
+#include "Moveable.h"
 
 
 GameState::GameState(const GameProxy* proxy)
@@ -39,10 +40,21 @@ void GameState::Draw(RenderWindow* window)
 void GameState::Logic()
 {
 	input->HandleInput();
+	Update();
+
 }
 void GameState::Update()
 {
+	std::vector<GameObject*>::iterator it;
 
+	for (it = gameObjects.begin(); it != gameObjects.end(); it++)
+	{
+		Moveable* moveobj =  dynamic_cast<Moveable*> (*it);
+		if (moveobj != NULL) 
+		{
+			moveobj->Update();
+		}
+	}
 }
 void GameState::CheckCollisions()
 {

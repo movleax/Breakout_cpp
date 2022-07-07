@@ -6,6 +6,8 @@
 
 #include "Brick.h"
 #include "Wall.h"
+#include "Paddle.h"
+#include "Ball.h"
 #include "MoveLeftCommand.h"
 #include "MoveRightCommand.h"
 
@@ -41,10 +43,20 @@ MainGame::MainGame(const GameProxy* proxy)
 
 	Wall* ptr_Wall = new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green);
 	Brick* brick = new Brick(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red);
+	Paddle* paddle = new Paddle(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Magenta);
+	Ball* ball = new Ball(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, Color::Cyan);
+	paddle->SetSpeed(.2);
+	paddle->SetVelocity(Vector2f(1,0));
+	ball->SetSpeed(.2);
+	ball->SetVelocity(Vector2f(1, 0));
+
 
 
 	AddGameObject(ptr_Wall);
 	AddGameObject(brick);
+	AddGameObject(paddle);
+	AddGameObject(ball);
+
 	AddGameObject(new Brick(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red));
 	AddGameObject(new Brick(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red));
 	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
@@ -96,6 +108,7 @@ void MainGame::Logic()
 }
 void MainGame::Update() 
 {
+	GameState::Update();
 	//vector<Shape*>::iterator it;
 
 	//for (it = shapes.begin(); it != shapes.end(); it++)
