@@ -11,6 +11,7 @@
 #include "Ball.h"
 #include "MoveLeftCommand.h"
 #include "MoveRightCommand.h"
+#include "StopCommand.h"
 
 MainGame::MainGame(const GameProxy* proxy)
 	: GameState(proxy)
@@ -56,8 +57,10 @@ MainGame::MainGame(const GameProxy* proxy)
 	Input* input = new Input();
 	MoveLeftCommand* moveLeftCmd = new MoveLeftCommand(player);
 	MoveRightCommand* moveRightCmd = new MoveRightCommand(player);
+	StopCommand* stopCmd = new StopCommand(player);
 	input->AddCommand(moveLeftCmd);
 	input->AddCommand(moveRightCmd);
+	input->AddCommand(stopCmd);
 
 	AddGameObject(ptr_Wall);
 	AddGameObject(brick);
