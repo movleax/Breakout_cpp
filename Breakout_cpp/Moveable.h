@@ -5,9 +5,9 @@
 
 class Moveable : public Collidable
 {
-	Vector2f Velocity;
 	float speed;
-
+protected:
+	Vector2f Velocity;
 public:
 	Moveable(const Vector2f& Position);
 	virtual ~Moveable();

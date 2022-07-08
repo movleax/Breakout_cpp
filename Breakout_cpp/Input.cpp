@@ -22,9 +22,6 @@ void Input::HandleInput()
 
 	for (it = commands.begin(); it != commands.end(); it++)
 	{
-		if ((*it)->CheckCondition())
-		{
-			(*it)->Execute();
-		}
+		(*it)->Execute();
 	}
 }

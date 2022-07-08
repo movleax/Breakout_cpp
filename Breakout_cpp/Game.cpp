@@ -46,6 +46,9 @@ void Game::Cycle()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+			if (event.type == sf::Event::KeyPressed) {
+				int nop = 0;
+			}
 		}
 
 		Update();

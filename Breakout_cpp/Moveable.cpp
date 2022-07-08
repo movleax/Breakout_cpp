@@ -27,10 +27,10 @@ void Moveable::SetVelocity(const Vector2f& u_Direction) // take in a direction u
 void Moveable::UpdatePosition(const Vector2f& newPosition)
 {
 	position = newPosition;
+	shape->setPosition(position);
 }
 
 void Moveable::Update() // add the velocity to the position vector. Keep this method virtual to allow children to override if needed.
 {
 	UpdatePosition(position + Velocity);
-	shape->setPosition(position);
 }

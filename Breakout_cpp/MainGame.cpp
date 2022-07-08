@@ -6,7 +6,8 @@
 
 #include "Brick.h"
 #include "Wall.h"
-#include "Paddle.h"
+//#include "Paddle.h"
+#include "Player.h"
 #include "Ball.h"
 #include "MoveLeftCommand.h"
 #include "MoveRightCommand.h"
@@ -43,18 +44,24 @@ MainGame::MainGame(const GameProxy* proxy)
 
 	Wall* ptr_Wall = new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green);
 	Brick* brick = new Brick(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red);
-	Paddle* paddle = new Paddle(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Magenta);
-	Ball* ball = new Ball(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, Color::Cyan);
+	/*Paddle* paddle = new Paddle(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Magenta);
 	paddle->SetSpeed(.2);
-	paddle->SetVelocity(Vector2f(1,0));
+	paddle->SetVelocity(Vector2f(1,0));*/
+	Ball* ball = new Ball(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, Color::Cyan);
 	ball->SetSpeed(.2);
-	ball->SetVelocity(Vector2f(1, 0));
+	ball->SetVelocity(Vector2f(-1, 0));
 
+	Player* player = new Player(Vector2f(250,400));
 
+	Input* input = new Input();
+	MoveLeftCommand* moveLeftCmd = new MoveLeftCommand(player);
+	MoveRightCommand* moveRightCmd = new MoveRightCommand(player);
+	input->AddCommand(moveLeftCmd);
+	input->AddCommand(moveRightCmd);
 
 	AddGameObject(ptr_Wall);
 	AddGameObject(brick);
-	AddGameObject(paddle);
+	AddGameObject(player);
 	AddGameObject(ball);
 
 	AddGameObject(new Brick(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red));
@@ -64,13 +71,6 @@ MainGame::MainGame(const GameProxy* proxy)
 	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
 	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
 	AddGameObject(new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green));
-
-
-	Input* input = new Input();
-	MoveLeftCommand* moveLeftCmd = new MoveLeftCommand(ptr_Wall);
-	MoveRightCommand* moveRightCmd = new MoveRightCommand(brick);
-	input->AddCommand(moveLeftCmd);
-	input->AddCommand(moveRightCmd);
 
 	this->AddInputHandler(input);
 }

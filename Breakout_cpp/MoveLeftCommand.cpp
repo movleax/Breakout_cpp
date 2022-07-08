@@ -1,8 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include "MoveLeftCommand.h"
 
-MoveLeftCommand::MoveLeftCommand(GameObject* gameObj/*const Player* player*/)
-	:Command(gameObj)
+MoveLeftCommand::MoveLeftCommand(Player* player)
+	:Command(player)
 {
 
 }
@@ -15,8 +15,10 @@ MoveLeftCommand::~MoveLeftCommand()
 
 void MoveLeftCommand::Execute()
 {
-	gameObj->Deactivate();
-	// Player->MoveLeft()
+	if (CheckCondition())
+	{
+		((Player*)gameObj)->SetVelocity(Vector2f(-1, 0));
+	}
 }
 bool MoveLeftCommand::CheckCondition() // use sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
 {

@@ -5,7 +5,8 @@ using namespace sf;
 
 
 
-MoveRightCommand::MoveRightCommand(GameObject* GameObject) :Command(GameObject)
+MoveRightCommand::MoveRightCommand(Player* player) 
+	:Command(player)
 {
 
 }
@@ -18,7 +19,10 @@ MoveRightCommand::~MoveRightCommand()
 
 void MoveRightCommand::Execute()
 {
-	gameObj->Deactivate();
+	if (CheckCondition())
+	{
+		((Player*)gameObj)->SetVelocity(Vector2f(1, 0));
+	}
 }
 
 bool MoveRightCommand::CheckCondition()
