@@ -187,7 +187,6 @@
     <ClInclude Include="MoveRightCommand.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="StopCommand.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
