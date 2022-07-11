@@ -17,6 +17,8 @@ public:
 	void UpdatePosition(const Vector2f& newPosition) override;
 	void Update() override;
 	void Draw(sf::RenderWindow* window) override;
+	Shape* GetShapeObject() override;
+	void HandleCollision(Collidable* obj) override;
 };
 
 

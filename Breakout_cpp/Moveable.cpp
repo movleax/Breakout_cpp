@@ -16,6 +16,12 @@ void Moveable::SetSpeed(const float& newSpeed)
 	speed = newSpeed;
 }
 
+Vector2f Moveable::GetVelocity()
+{
+	return Velocity;
+}
+
+
 void Moveable::SetVelocity(const Vector2f& u_Direction) // take in a direction unit vector, scale by the speed, then assign to Velocity
 {
 	Velocity = u_Direction;

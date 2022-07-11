@@ -1,4 +1,6 @@
+#include <SFML/System/Vector2.hpp>
 #include "Player.h"
+#include "Wall.h"
 
 Player::Player(const Vector2f& Position)
 	:Moveable(Position)
@@ -49,4 +51,21 @@ void Player::UpdatePosition(const Vector2f& newPosition)
 void Player::Update() // add the velocity to the position vector. Keep this method virtual to allow children to override if needed.
 {
 	UpdatePosition(position + Velocity);
+}
+
+Shape* Player::GetShapeObject()
+{
+	return paddle->GetShapeObject();
+}
+
+void Player::HandleCollision(Collidable* obj)
+{
+	if (dynamic_cast<Wall*> (obj) != NULL)
+	{
+		Vector2f inverse = GetVelocity();
+		inverse.x *= -2;
+		inverse.y *= -2;
+		SetVelocity(inverse);
+		UpdatePosition(position + Velocity);
+	}
 }

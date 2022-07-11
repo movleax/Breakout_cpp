@@ -143,5 +143,8 @@
     <ClInclude Include="StopCommand.h">
       <Filter>Header Files\Input_Commands</Filter>
     </ClInclude>
+    <ClInclude Include="Utility_Collisions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

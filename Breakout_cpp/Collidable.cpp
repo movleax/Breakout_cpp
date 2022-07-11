@@ -15,7 +15,7 @@ Collidable::~Collidable() // need a destructor so that we can be sure the collis
 	}
 }
 
-const Shape* Collidable::GetShapeObject() // returns the Shape pointer. NOTE I don't know if I have the constant keyword placed correctly
+Shape* Collidable::GetShapeObject() // returns the Shape pointer. NOTE I don't know if I have the constant keyword placed correctly
 {
 	return shape;
 }
@@ -26,4 +26,9 @@ void Collidable::Draw(sf::RenderWindow* window)
 	{
 		window->draw(*shape);
 	}
+}
+
+void Collidable::HandleCollision(Collidable* obj)
+{
+	int nop = 0;
 }

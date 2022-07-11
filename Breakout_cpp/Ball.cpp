@@ -16,6 +16,15 @@ Ball::~Ball()
 	shape = 0;
 }
 
+void Ball::HandleCollision(Collidable* obj)
+{
+	Vector2f inverse = GetVelocity();
+	inverse.x *= -1;
+	inverse.y *= -1;
+	SetVelocity(inverse);
+	UpdatePosition(position + Velocity);
+}
+
 /*void Draw(sf::RenderWindow& window) override;
 void Update() override;*/
 

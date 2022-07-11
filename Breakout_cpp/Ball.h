@@ -8,4 +8,5 @@ public:
 	~Ball();
 	/*void Draw(sf::RenderWindow& window) override;
 	void Update() override;*/
+	void HandleCollision(Collidable* obj) override;
 };
