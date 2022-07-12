@@ -4,9 +4,11 @@
 
 class Wall : public Collidable
 {
-	// need to make a sf::RectangleShape object in constructor and assign that to *shape
+	const float width;
+	const float height;
 public:
-	Wall(const Vector2f& Position, const unsigned& Width, const unsigned& Height, sf::Color color);
+	Wall(const Vector2f& Position, const float& Width, const float& Height, sf::Color color);
 	~Wall();
+	virtual Vector2f GetCenter() override;
 	//void Draw(sf::RenderWindow& window) override; // No need to override this one
 };

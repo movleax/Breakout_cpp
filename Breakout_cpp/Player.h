@@ -19,6 +19,7 @@ public:
 	void Draw(sf::RenderWindow* window) override;
 	Shape* GetShapeObject() override;
 	void HandleCollision(Collidable* obj) override;
+	virtual Vector2f GetCenter() override;
 };
 
 

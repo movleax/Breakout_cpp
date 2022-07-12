@@ -172,7 +172,6 @@
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Brick.h" />
-    <ClInclude Include="Circle.h" />
     <ClInclude Include="Collidable.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Game.h" />

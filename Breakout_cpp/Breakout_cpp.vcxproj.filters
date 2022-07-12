@@ -107,9 +107,6 @@
     <ClInclude Include="Brick.h">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Circle.h">
-      <Filter>Header Files\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Collidable.h">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>

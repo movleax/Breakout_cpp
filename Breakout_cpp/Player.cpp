@@ -5,7 +5,7 @@
 Player::Player(const Vector2f& Position)
 	:Moveable(Position)
 {
-	paddle = new Paddle(Position, 50, 20, sf::Color::Blue);
+	paddle = new Paddle(Position, 150, 15, sf::Color::Blue);
 	lives = 3;
 	score = 0;
 	SetSpeed(0.5);
@@ -63,9 +63,15 @@ void Player::HandleCollision(Collidable* obj)
 	if (dynamic_cast<Wall*> (obj) != NULL)
 	{
 		Vector2f inverse = GetVelocity();
-		inverse.x *= -2;
-		inverse.y *= -2;
+		float magnitude = sqrt(pow(inverse.x, 2) + pow(inverse.y, 2));
+		inverse.x = -1 * inverse.x/magnitude;
+		inverse.y = -1 * inverse.y/magnitude;
 		SetVelocity(inverse);
 		UpdatePosition(position + Velocity);
 	}
+}
+
+Vector2f Player::GetCenter()
+{
+	return paddle->GetCenter();
 }

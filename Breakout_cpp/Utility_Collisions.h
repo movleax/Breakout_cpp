@@ -53,36 +53,48 @@ bool intersects(sf::Shape* A, sf::Shape* B)
 
 bool intersects(sf::CircleShape* circle, sf::RectangleShape* rect)
 {
-    Vector2f circleDistance(0, 0) = circle->getPosition() - rect->getPosition();
+    float rect_Width = rect->getSize().x;
+    float rect_Height = rect->getSize().y;
+    float radius = circle->getRadius();
+
+    Vector2f circleCenter = circle->getPosition();
+    circleCenter.x = circleCenter.x + radius;
+    circleCenter.y = circleCenter.y + radius;
+
+    Vector2f rectCenter = rect->getPosition();
+    rectCenter.x = rectCenter.x + rect_Width / 2;
+    rectCenter.y = rectCenter.y + rect_Height / 2;
+
+    Vector2f circleDistance = circleCenter - rectCenter;
     circleDistance.x = abs(circleDistance.x);
     circleDistance.y = abs(circleDistance.y);
 
-    if (circleDistance.x > (rect.width / 2 + circle.r)) { return false; }
-    if (circleDistance.y > (rect.height / 2 + circle.r)) { return false; }
+    if (circleDistance.x > (rect_Width / 2 + radius)) { return false; }
+    if (circleDistance.y > (rect_Height / 2 + radius)) { return false; }
 
-    if (circleDistance.x <= (rect.width / 2)) { return true; }
-    if (circleDistance.y <= (rect.height / 2)) { return true; }
+    if (circleDistance.x <= (rect_Width / 2)) { return true; }
+    if (circleDistance.y <= (rect_Height / 2)) { return true; }
 
-    cornerDistance_sq = (circleDistance.x - rect.width / 2) ^ 2 +
-        (circleDistance.y - rect.height / 2) ^ 2;
+    float cornerDistance_sq = pow((circleDistance.x - rect_Width / 2), 2) 
+                                + pow((circleDistance.y - rect_Height / 2), 2);
 
-    return (cornerDistance_sq <= (circle.r ^ 2));
+    return (cornerDistance_sq <= pow(radius, 2));
 }
 
-// circle and rectangle collision
-bool intersects(sf::CircleShape* c, sf::RectangleShape* r) 
-{
-    sf::FloatRect fr = r->getGlobalBounds();
-    sf::Vector2f topLeft(fr.left, fr.top);
-    sf::Vector2f topRight(fr.left + fr.width, fr.top);
-    sf::Vector2f botLeft(fr.left, fr.top + fr.height);
-    sf::Vector2f botRight(fr.left + fr.width, fr.top + fr.height);
-
-    return contains(*c, topLeft) ||
-        contains(*c, topRight) ||
-        contains(*c, botLeft) ||
-        contains(*c, botRight);
-}
+//// circle and rectangle collision
+//bool intersects(sf::CircleShape* c, sf::RectangleShape* r) 
+//{
+//    sf::FloatRect fr = r->getGlobalBounds();
+//    sf::Vector2f topLeft(fr.left, fr.top);
+//    sf::Vector2f topRight(fr.left + fr.width, fr.top);
+//    sf::Vector2f botLeft(fr.left, fr.top + fr.height);
+//    sf::Vector2f botRight(fr.left + fr.width, fr.top + fr.height);
+//
+//    return contains(*c, topLeft) ||
+//        contains(*c, topRight) ||
+//        contains(*c, botLeft) ||
+//        contains(*c, botRight);
+//}
 
 // rectangle on rectangle collision
 bool intersects(sf::RectangleShape* A, sf::RectangleShape* B) 

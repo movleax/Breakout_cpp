@@ -4,9 +4,12 @@
 
 class Brick :public Collidable
 {
+	const float width;
+	const float height;
 public:
-	Brick(const Vector2f& Position, const unsigned& Width, const unsigned& Height, sf::Color color);
+	Brick(const Vector2f& Position, const float& Width, const float& Height, sf::Color color);
 	~Brick();
+	virtual Vector2f GetCenter() override;
 	//void Draw(sf::RenderWindow* window) override;
 
 };

@@ -22,7 +22,7 @@ Shape* Collidable::GetShapeObject() // returns the Shape pointer. NOTE I don't k
 
 void Collidable::Draw(sf::RenderWindow* window)
 {
-	if (this->GetIsActive())
+	//if (this->GetIsActive())
 	{
 		window->draw(*shape);
 	}

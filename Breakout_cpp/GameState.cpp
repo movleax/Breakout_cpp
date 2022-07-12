@@ -22,7 +22,19 @@ void GameState::AddInputHandler(Input* input)
 }
 void GameState::HandleDeactivatedObjects()
 {
+	std::vector<GameObject*>::iterator it = gameObjects.begin();
 
+	while (it != gameObjects.end())
+	{
+		if (!(*it)->GetIsActive()) 
+		{
+			it = gameObjects.erase(it);
+		}
+		else
+		{
+			it++;
+		}
+	}
 }
 //void GameState::Draw()
 //{
@@ -42,6 +54,7 @@ void GameState::Logic()
 	input->HandleInput();
 	Update();
 	CheckCollisions();
+	HandleDeactivatedObjects();
 }
 void GameState::Update()
 {
