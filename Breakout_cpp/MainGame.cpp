@@ -23,16 +23,17 @@ MainGame::MainGame(const GameProxy* proxy)
 	/*Wall* wall = new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green);
 	AddGameObject(wall);*/
 
+	Player* player = new Player(Vector2f(250,400));
 	//Wall* ptr_Wall = new Wall(Vector2f(200, 200), rand() % 200 + 100, rand() % 200 + 100, Color::Green);
 	Brick* brick = new Brick(Vector2f(rand() % 500 + 1, rand() % 200 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red);
 	/*Paddle* paddle = new Paddle(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Magenta);
 	paddle->SetSpeed(.2);
 	paddle->SetVelocity(Vector2f(1,0));*/
-	Ball* ball = new Ball(Vector2f(250, 300), 10, Color::Cyan);
+	PlayerProxy* ptrPlayerProxy = new PlayerProxy(player);
+	Ball* ball = new Ball(Vector2f(250, 300), 10, Color::Cyan, ptrPlayerProxy);
 	ball->SetSpeed(.2);
 	ball->SetVelocity(Vector2f(-.25, -.75));
 
-	Player* player = new Player(Vector2f(250,400));
 
 	Input* input = new Input();
 	MoveLeftCommand* moveLeftCmd = new MoveLeftCommand(player);

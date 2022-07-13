@@ -10,6 +10,8 @@ public:
 	Brick(const Vector2f& Position, const float& Width, const float& Height, sf::Color color);
 	~Brick();
 	virtual Vector2f GetCenter() override;
+	virtual void HandleCollision(Collidable* obj) override;
+
 	//void Draw(sf::RenderWindow* window) override;
 
 };

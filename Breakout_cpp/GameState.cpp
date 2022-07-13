@@ -28,6 +28,7 @@ void GameState::HandleDeactivatedObjects()
 	{
 		if (!(*it)->GetIsActive()) 
 		{
+			delete* it;
 			it = gameObjects.erase(it);
 		}
 		else

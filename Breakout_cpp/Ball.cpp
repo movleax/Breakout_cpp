@@ -5,9 +5,11 @@
 
 
 
-Ball::Ball(const Vector2f& Position, const float& Radius, sf::Color color)
+Ball::Ball(const Vector2f& Position, const float& Radius, sf::Color color, PlayerProxy* ptrPlayerProxy)
 	:Moveable(Position), radius(Radius)
 {
+	playerProxy = ptrPlayerProxy;
+	
 	shape = new CircleShape(Radius);
 	shape->setPosition(Position);
 	shape->setFillColor(color);
@@ -17,6 +19,8 @@ Ball::~Ball()
 {
 	delete shape;
 	shape = 0;
+	delete playerProxy;
+	playerProxy = 0;
 }
 
 void Ball::HandleCollision(Collidable* obj)
@@ -53,6 +57,11 @@ void Ball::HandleCollision(Collidable* obj)
 		newVelocity.x = scale_x * newVelocity.x / magnitude;
 		newVelocity.y = scale_y * newVelocity.y / magnitude;
 		SetVelocity(newVelocity);
+
+		if (dynamic_cast<Brick*>(obj) != NULL)
+		{
+			playerProxy->AddToScore(100);
+		}
 	}
 	else if (dynamic_cast<Player*>(obj) != NULL
 		|| dynamic_cast<Paddle*>(obj) != NULL)

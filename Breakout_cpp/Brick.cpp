@@ -1,4 +1,5 @@
 #include "Brick.h"
+#include "Ball.h"
 
 
 
@@ -16,6 +17,17 @@ Brick::~Brick()
 	shape = 0;
 }
 
+void Brick::HandleCollision(Collidable* obj)
+{
+	//ball touches brick deletes brick
+
+	if (dynamic_cast<Ball*> (obj) != NULL)
+	{
+		Deactivate();
+	}
+
+}
+
 Vector2f Brick::GetCenter()
 {
 	Vector2f rectCenter = shape->getPosition();
@@ -23,6 +35,7 @@ Vector2f Brick::GetCenter()
 	rectCenter.y = rectCenter.y + height / 2;
 	return rectCenter;
 }
+
 
 //void Brick::Draw(sf::RenderWindow* window) 
 //{
