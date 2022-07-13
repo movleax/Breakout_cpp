@@ -39,6 +39,15 @@ void Game::CheckCollisions()
 }
 void Game::Cycle() 
 {
+	// Declare and load a font
+	sf::Font font;
+	font.loadFromFile("arial.ttf");
+	// Create a text
+	sf::Text text("hello", font);
+	text.setCharacterSize(30);
+	//text.setStyle(sf::Text::Bold);
+	text.setFillColor(sf::Color::Red);
+
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -55,6 +64,7 @@ void Game::Cycle()
 
 		window.clear();
 		Draw();
+		window.draw(text);
 		window.display();
 	}
 }
