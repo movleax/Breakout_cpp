@@ -20,5 +20,5 @@ public:
 	bool GetIsActive();
 	void Deactivate(); // set isActive boolean to false;
 	virtual void Draw(sf::RenderWindow* window) = 0; // pure virtual
-	//virtual void Update() = 0; // pure virtual
+	virtual void Update();
 };

@@ -27,3 +27,8 @@ void GameObject::Deactivate()
 	isActive = false;// set isActive boolean to false
 }
 
+void GameObject::Update()
+{
+	// Do nothing
+}
+

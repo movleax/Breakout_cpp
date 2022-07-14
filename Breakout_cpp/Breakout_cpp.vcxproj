@@ -165,6 +165,7 @@
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerProxy.cpp" />
+    <ClCompile Include="ScoreText.cpp" />
     <ClCompile Include="StopCommand.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
@@ -190,6 +191,7 @@
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerProxy.h" />
+    <ClInclude Include="ScoreText.h" />
     <ClInclude Include="StopCommand.h" />
     <ClInclude Include="Utility_Collisions.h" />
     <ClInclude Include="Wall.h" />

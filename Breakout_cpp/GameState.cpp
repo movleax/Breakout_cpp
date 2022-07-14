@@ -63,11 +63,13 @@ void GameState::Update()
 
 	for (it = gameObjects.begin(); it != gameObjects.end(); it++)
 	{
-		Moveable* moveobj =  dynamic_cast<Moveable*> (*it);
+		/*Moveable* moveobj =  dynamic_cast<Moveable*> (*it);
 		if (moveobj != NULL) 
 		{
 			moveobj->Update();
-		}
+		}*/
+
+		(*it)->Update();
 	}
 }
 void GameState::CheckCollisions()

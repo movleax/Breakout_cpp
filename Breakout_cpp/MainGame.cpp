@@ -12,7 +12,7 @@
 #include "MoveLeftCommand.h"
 #include "MoveRightCommand.h"
 #include "StopCommand.h"
-#include "GameText.h"
+#include "ScoreText.h"
 
 MainGame::MainGame(const GameProxy* proxy)
 	: GameState(proxy)
@@ -35,7 +35,7 @@ MainGame::MainGame(const GameProxy* proxy)
 	ball->SetSpeed(.2);
 	ball->SetVelocity(Vector2f(-.25, -.75));
 
-	GameText* ingameText = new GameText(Vector2f(25,25), "here we go", "arial.ttf", false, 55, sf::Color::Magenta);
+	ScoreText* scoreText = new ScoreText(Vector2f(25,25), ptrPlayerProxy);
 
 	Input* input = new Input();
 	MoveLeftCommand* moveLeftCmd = new MoveLeftCommand(player);
@@ -50,15 +50,25 @@ MainGame::MainGame(const GameProxy* proxy)
 	AddGameObject(ball);
 	//AddGameObject(ptr_Wall);
 
-	/*AddGameObject(new Brick(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red));
-	AddGameObject(new Brick(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red));
+	/*
+		for (int i = 0; i < 5; i++)
+		{
+			for (int j = 0; j < 20; j++)
+			{
+				AddGameObject(new Brick(Vector2f(25+j*20,50+i*10), 20, 10, Color::Red));
+			}
+		}
 	*/
+
+	AddGameObject(new Brick(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red));
+	AddGameObject(new Brick(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red));
+	
 	AddGameObject(new Wall(Vector2f(0, 0), 10, 600, Color::Green));
 	AddGameObject(new Wall(Vector2f(790, 0), 10, 600, Color::Green));
 	AddGameObject(new Wall(Vector2f(0, 0), 800, 10, Color::Green));
 	AddGameObject(new Wall(Vector2f(0,590), 800, 10, Color::Green));
 
-	AddGameObject(ingameText);
+	AddGameObject(scoreText);
 
 
 	this->AddInputHandler(input);

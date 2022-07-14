@@ -21,7 +21,8 @@ GameText::GameText(const Vector2f& Position, string Text, string fontFileName, b
 }
 GameText::~GameText()
 {
-
+	delete text;
+	text = 0;
 }
 
 Vector2f GameText::GetCenter()
