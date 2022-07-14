@@ -187,7 +187,7 @@ GameText : Public GameObject
     Variables:
        sf::Text text
     Methods:
-        GameText(string fontFileName, bool Bold, unsigned Size, sf::Color color)
+        GameText(Vector2f, string fontFileName, bool Bold, unsigned Size, sf::Color color)
         ~GameText()
 
 ScoreText : Public GameText

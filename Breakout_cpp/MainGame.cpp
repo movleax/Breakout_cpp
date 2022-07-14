@@ -12,6 +12,7 @@
 #include "MoveLeftCommand.h"
 #include "MoveRightCommand.h"
 #include "StopCommand.h"
+#include "GameText.h"
 
 MainGame::MainGame(const GameProxy* proxy)
 	: GameState(proxy)
@@ -34,6 +35,7 @@ MainGame::MainGame(const GameProxy* proxy)
 	ball->SetSpeed(.2);
 	ball->SetVelocity(Vector2f(-.25, -.75));
 
+	GameText* ingameText = new GameText(Vector2f(25,25), "here we go", "arial.ttf", false, 55, sf::Color::Magenta);
 
 	Input* input = new Input();
 	MoveLeftCommand* moveLeftCmd = new MoveLeftCommand(player);
@@ -56,6 +58,7 @@ MainGame::MainGame(const GameProxy* proxy)
 	AddGameObject(new Wall(Vector2f(0, 0), 800, 10, Color::Green));
 	AddGameObject(new Wall(Vector2f(0,590), 800, 10, Color::Green));
 
+	AddGameObject(ingameText);
 
 
 	this->AddInputHandler(input);

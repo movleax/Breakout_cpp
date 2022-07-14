@@ -155,6 +155,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameProxy.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GameText.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameProxy.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameText.h" />
     <ClInclude Include="iGame.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="MainGame.h" />
