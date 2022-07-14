@@ -19,27 +19,26 @@ void Game::CheckStateChange(GameState* gameState)
 {
 
 }
-void Game::Draw() 
+void Game::Draw()
 {
 	// Call _gameState->Draw()
 	_gameState->Draw(&window);
 }
-void Game::Logic() 
+void Game::Logic()
 {
 	_gameState->Logic();
 }
-void Game::Update() 
+void Game::Update()
 {
 	Logic();
 	CheckCollisions();
 }
-void Game::CheckCollisions() 
+void Game::CheckCollisions()
 {
 	// Call _gameState->CheckCollisions()
 }
-void Game::Cycle() 
+void Game::Cycle()
 {
-	
 
 	while (window.isOpen())
 	{
