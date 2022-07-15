@@ -8,7 +8,7 @@ Player::Player(const Vector2f& Position)
 	paddle = new Paddle(Position, 150, 15, sf::Color::Blue);
 	lives = 3;
 	score = 0;
-	SetSpeed(0.5);
+	SetSpeed(15);
 }
 
 Player::~Player()

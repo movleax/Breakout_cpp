@@ -6,6 +6,7 @@ Game::Game()
 {
 	// define a starting game state to load
 	// _gameState = new MainGame(...);
+	window.setFramerateLimit(60);
 }
 Game::~Game()
 {
