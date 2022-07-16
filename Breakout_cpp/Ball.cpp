@@ -57,7 +57,7 @@ void Ball::HandleCollision(Collidable* obj)
 		newVelocity.x = scale_x * newVelocity.x / magnitude;
 		newVelocity.y = scale_y * newVelocity.y / magnitude;
 		SetVelocity(newVelocity);
-
+		UpdatePosition(position + Velocity);
 		if (dynamic_cast<Brick*>(obj) != NULL)
 		{
 			playerProxy->AddToScore(100);
@@ -71,6 +71,7 @@ void Ball::HandleCollision(Collidable* obj)
 		newVelocity.x = -1 * newVelocity.x / magnitude;
 		newVelocity.y = -1 * newVelocity.y / magnitude;
 		SetVelocity(newVelocity);
+		UpdatePosition(position + Velocity);
 	}
 
 }

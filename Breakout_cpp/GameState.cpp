@@ -86,7 +86,7 @@ void GameState::CheckCollisions()
 			continue;
 		}
 
-		for (it_B = gameObjects.begin(); it_B != gameObjects.end(); it_B++)
+		for (it_B = it_A+1; it_B != gameObjects.end(); it_B++)
 		{
 			Collidable* obj_B = dynamic_cast<Collidable*> (*it_B);
 
@@ -101,6 +101,7 @@ void GameState::CheckCollisions()
 			if (intersects(A, B)) 
 			{
 				obj_A->HandleCollision(obj_B);
+				obj_B->HandleCollision(obj_A);
 			}
 		}
 	}

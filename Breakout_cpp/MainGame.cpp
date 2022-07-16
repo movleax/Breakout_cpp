@@ -53,9 +53,9 @@ MainGame::MainGame(const GameProxy* proxy)
 	
 		for (int i = 0; i < 2; i++)
 		{
-			for (int j = 0; j < 20; j++)
+			for (int j = 0; j < 12; j++)
 			{
-				AddGameObject(new Brick(Vector2f(25+j*55,50+i*30), 50, 25, Color::Red));
+				AddGameObject(new Brick(Vector2f(45+j*60,50+i*35), 50, 25, Color::Red));
 			}
 		}
 	
