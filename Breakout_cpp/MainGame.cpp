@@ -13,6 +13,7 @@
 #include "MoveRightCommand.h"
 #include "StopCommand.h"
 #include "ScoreText.h"
+#include "LivesText.h"
 
 MainGame::MainGame(const GameProxy* proxy)
 	: GameState(proxy)
@@ -36,6 +37,8 @@ MainGame::MainGame(const GameProxy* proxy)
 	ball->SetVelocity(Vector2f(-.25, -.75));
 
 	ScoreText* scoreText = new ScoreText(Vector2f(25,20), ptrPlayerProxy);
+	LivesText* livesText = new LivesText(Vector2f(600, 20), ptrPlayerProxy);
+
 
 	Input* input = new Input();
 	MoveLeftCommand* moveLeftCmd = new MoveLeftCommand(player);
@@ -69,7 +72,7 @@ MainGame::MainGame(const GameProxy* proxy)
 	AddGameObject(new Wall(Vector2f(0,690), 800, 10, Color::Green));
 
 	AddGameObject(scoreText);
-
+	AddGameObject(livesText);
 
 	this->AddInputHandler(input);
 }

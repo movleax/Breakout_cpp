@@ -157,6 +157,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameText.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="LivesText.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Moveable.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="GameText.h" />
     <ClInclude Include="iGame.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="LivesText.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Moveable.h" />
     <ClInclude Include="MoveLeftCommand.h" />

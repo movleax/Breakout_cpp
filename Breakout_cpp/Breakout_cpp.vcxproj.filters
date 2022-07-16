@@ -90,6 +90,9 @@
     <ClCompile Include="ScoreText.cpp">
       <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="LivesText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="DesignDocument.txt" />
@@ -160,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="ScoreText.h">
       <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="LivesText.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
