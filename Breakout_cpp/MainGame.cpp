@@ -24,18 +24,18 @@ MainGame::MainGame(const GameProxy* proxy)
 	/*Wall* wall = new Wall(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Green);
 	AddGameObject(wall);*/
 
-	Player* player = new Player(Vector2f(250,400));
+	Player* player = new Player(Vector2f(250,600));
 	//Wall* ptr_Wall = new Wall(Vector2f(200, 200), rand() % 200 + 100, rand() % 200 + 100, Color::Green);
 	//Brick* brick = new Brick(Vector2f(rand() % 500 + 1, rand() % 200 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red);
 	/*Paddle* paddle = new Paddle(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Magenta);
 	paddle->SetSpeed(.2);
 	paddle->SetVelocity(Vector2f(1,0));*/
 	PlayerProxy* ptrPlayerProxy = new PlayerProxy(player);
-	Ball* ball = new Ball(Vector2f(250, 300), 10, Color::Cyan, ptrPlayerProxy);
+	Ball* ball = new Ball(Vector2f(250, 400), 10, Color::Cyan, ptrPlayerProxy);
 	ball->SetSpeed(8);
 	ball->SetVelocity(Vector2f(-.25, -.75));
 
-	ScoreText* scoreText = new ScoreText(Vector2f(25,25), ptrPlayerProxy);
+	ScoreText* scoreText = new ScoreText(Vector2f(25,20), ptrPlayerProxy);
 
 	Input* input = new Input();
 	MoveLeftCommand* moveLeftCmd = new MoveLeftCommand(player);
@@ -55,7 +55,7 @@ MainGame::MainGame(const GameProxy* proxy)
 		{
 			for (int j = 0; j < 12; j++)
 			{
-				AddGameObject(new Brick(Vector2f(45+j*60,50+i*35), 50, 25, Color::Red));
+				AddGameObject(new Brick(Vector2f(45+j*60,150+i*35), 50, 25, Color::Red));
 			}
 		}
 	
@@ -63,10 +63,10 @@ MainGame::MainGame(const GameProxy* proxy)
 	/*AddGameObject(new Brick(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red));
 	AddGameObject(new Brick(Vector2f(rand() % 500 + 1, rand() % 500 + 1), rand() % 100 + 10, rand() % 100 + 10, Color::Red));
 	*/
-	AddGameObject(new Wall(Vector2f(0, 0), 10, 600, Color::Green));
-	AddGameObject(new Wall(Vector2f(790, 0), 10, 600, Color::Green));
-	AddGameObject(new Wall(Vector2f(0, 0), 800, 10, Color::Green));
-	AddGameObject(new Wall(Vector2f(0,590), 800, 10, Color::Green));
+	AddGameObject(new Wall(Vector2f(0, 100), 10, 600, Color::Green));
+	AddGameObject(new Wall(Vector2f(790, 100), 10, 600, Color::Green));
+	AddGameObject(new Wall(Vector2f(0, 100), 800, 10, Color::Green));
+	AddGameObject(new Wall(Vector2f(0,690), 800, 10, Color::Green));
 
 	AddGameObject(scoreText);
 

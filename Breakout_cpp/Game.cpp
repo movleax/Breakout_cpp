@@ -2,7 +2,7 @@
 
 
 Game::Game()
-	: window(VideoMode(800, 600), "SFML works!")
+	: window(VideoMode(800, 700), "SFML works!")
 {
 	// define a starting game state to load
 	// _gameState = new MainGame(...);

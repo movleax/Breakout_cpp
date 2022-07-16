@@ -2,7 +2,7 @@
 #include <string>
 
 ScoreText::ScoreText(const Vector2f& Position, PlayerProxy* PlayerProxy)
-	:GameText(Position, "Score: ", "arial.ttf", true, 55, sf::Color::White)
+	:GameText(Position, "Score: ", "arial.ttf", true, 50, sf::Color::White)
 {
 	playerProxy = PlayerProxy;
 	text->setString("Score: " + std::to_string(playerProxy->GetScore()));
