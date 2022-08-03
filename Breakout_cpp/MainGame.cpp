@@ -50,7 +50,7 @@ MainGame::MainGame(const GameProxy* proxy)
 
 	//AddGameObject(brick);
 	AddGameObject(player);
-	AddGameObject(ball);
+	hBall = AddGameObject(ball);
 	//AddGameObject(ptr_Wall);
 
 	
@@ -106,6 +106,7 @@ void MainGame::ResetPlayerAndBall()
 
 void MainGame::Logic() 
 {
+	(dynamic_cast<Ball*>(gameObjCollection[hBall]))->SetSpeed(rand() % 20 + 3);
 	GameState::Logic();
 }
 void MainGame::Update() 

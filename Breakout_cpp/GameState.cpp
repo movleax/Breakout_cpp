@@ -2,6 +2,9 @@
 #include "GameState.h"
 #include "Moveable.h"
 #include "Utility_Collisions.h"
+#include <unordered_map>
+
+using namespace std;
 
 GameState::GameState(const GameProxy* proxy)
 {
@@ -11,9 +14,9 @@ GameState::~GameState()
 {
 
 }
-void GameState::AddGameObject(GameObject* gameObj)
+unsigned GameState::AddGameObject(GameObject* gameObj)
 {
-	gameObjects.push_back(gameObj);
+	return gameObjCollection.AddGameObject(gameObj);
 }
 
 void GameState::AddInputHandler(Input* input)
@@ -22,14 +25,13 @@ void GameState::AddInputHandler(Input* input)
 }
 void GameState::HandleDeactivatedObjects()
 {
-	std::vector<GameObject*>::iterator it = gameObjects.begin();
+	unordered_map<unsigned, GameObject*>::iterator it = gameObjCollection.begin();
 
-	while (it != gameObjects.end())
+	while (it != gameObjCollection.end())
 	{
-		if (!(*it)->GetIsActive()) 
+		if (!it->second->GetIsActive()) 
 		{
-			delete* it;
-			it = gameObjects.erase(it);
+			it = gameObjCollection.RemoveGameObject(it);
 		}
 		else
 		{
@@ -43,11 +45,11 @@ void GameState::HandleDeactivatedObjects()
 //}
 void GameState::Draw(RenderWindow* window)
 {
-	std::vector<GameObject*>::iterator it;
+	unordered_map<unsigned, GameObject*>::iterator it;
 
-	for (it = gameObjects.begin(); it != gameObjects.end(); it++)
+	for (it = gameObjCollection.begin(); it != gameObjCollection.end(); it++)
 	{
-		(*it)->Draw(window);
+		it->second->Draw(window);
 	}
 }
 void GameState::Logic()
@@ -59,9 +61,9 @@ void GameState::Logic()
 }
 void GameState::Update()
 {
-	std::vector<GameObject*>::iterator it;
+	unordered_map<unsigned, GameObject*>::iterator it;
 
-	for (it = gameObjects.begin(); it != gameObjects.end(); it++)
+	for (it = gameObjCollection.begin(); it != gameObjCollection.end(); it++)
 	{
 		/*Moveable* moveobj =  dynamic_cast<Moveable*> (*it);
 		if (moveobj != NULL) 
@@ -69,26 +71,26 @@ void GameState::Update()
 			moveobj->Update();
 		}*/
 
-		(*it)->Update();
+		it->second->Update();
 	}
 }
 void GameState::CheckCollisions()
 {
-	std::vector<GameObject*>::iterator it_A;
-	std::vector<GameObject*>::iterator it_B;
+	unordered_map<unsigned, GameObject*>::iterator it_A;
+	unordered_map<unsigned, GameObject*>::iterator it_B;
 
-	for (it_A = gameObjects.begin(); it_A != gameObjects.end(); it_A++)
+	for (it_A = gameObjCollection.begin(); it_A != gameObjCollection.end(); it_A++)
 	{
-		Collidable* obj_A = dynamic_cast<Collidable*> (*it_A);
+		Collidable* obj_A = dynamic_cast<Collidable*> (it_A->second);
 		
 		if (obj_A == NULL)
 		{
 			continue;
 		}
 
-		for (it_B = it_A+1; it_B != gameObjects.end(); it_B++)
+		for ((it_B = it_A)++; it_B != gameObjCollection.end(); it_B++)
 		{
-			Collidable* obj_B = dynamic_cast<Collidable*> (*it_B);
+			Collidable* obj_B = dynamic_cast<Collidable*> (it_B->second);
 
 			if (obj_B == NULL || obj_A == obj_B)
 			{

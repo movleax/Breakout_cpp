@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "GameObject.h"
 #include "Input.h"
+#include "GameObjectCollection.h"
 
 using namespace sf;
 
@@ -14,11 +15,11 @@ class GameState : public iGame
 protected:
 	GameProxy* gameProxy;
 	Input* input;
-	std::vector<GameObject*> gameObjects;
+	GameObjectCollection gameObjCollection;
 public:
 	GameState(const GameProxy* proxy);
 	virtual ~GameState();
-	void AddGameObject(GameObject* gameObj);
+	unsigned AddGameObject(GameObject* gameObj);
 	void AddInputHandler(Input* input);
 	void HandleDeactivatedObjects();
 	//virtual void Draw() override;

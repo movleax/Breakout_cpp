@@ -10,6 +10,7 @@ class MainGame : public GameState
 {
 	bool gameHasStarted;
 	//vector<Shape*> shapes; // temporary for testing
+	unsigned hBall;
 public:
 	MainGame(const GameProxy* proxy);
 	~MainGame();
