@@ -49,7 +49,7 @@ MainGame::MainGame(GameProxy* proxy)
 	input->AddCommand(stopCmd);
 
 	//AddGameObject(brick);
-	AddGameObject(player);
+	hPlayer = AddGameObject(player);
 	hBall = AddGameObject(ball);
 	//AddGameObject(ptr_Wall);
 
@@ -69,7 +69,7 @@ MainGame::MainGame(GameProxy* proxy)
 	AddGameObject(new Wall(Vector2f(0, 100), 10, 600, Color::Green));
 	AddGameObject(new Wall(Vector2f(790, 100), 10, 600, Color::Green));
 	AddGameObject(new Wall(Vector2f(0, 100), 800, 10, Color::Green));
-	AddGameObject(new Wall(Vector2f(0,690), 800, 10, Color::Green));
+	//AddGameObject(new Wall(Vector2f(0,690), 800, 10, Color::Green));
 
 	AddGameObject(scoreText);
 	AddGameObject(livesText);
@@ -106,8 +106,7 @@ void MainGame::ResetPlayerAndBall()
 
 void MainGame::Logic() 
 {
-	(dynamic_cast<Ball*>(gameObjCollection[hBall]))->SetSpeed(rand() % 20 + 3);
-	Vector2u foo = gameProxy->GetWindowDimensions();
+	
 	GameState::Logic();
 }
 void MainGame::Update() 
@@ -117,7 +116,28 @@ void MainGame::Update()
 void MainGame::CheckCollisions() 
 {
 	GameState::CheckCollisions();
+	CheckBallOutBounds();
 }
+void MainGame::CheckBallOutBounds()
+{
+	Ball* tempBall = dynamic_cast<Ball*>(gameObjCollection[hBall]);
+	Player* tempPlayer = dynamic_cast<Player*>(gameObjCollection[hPlayer]);
+	Vector2u bounds = gameProxy->GetWindowDimensions();
+
+	if (tempBall->GetPosition().y > bounds.y)
+	{
+		//remove life
+		tempPlayer->DecrementLife();
+		//restart game
+		Vector2f PlayerPosition = tempPlayer->GetCenter();
+		//PlayerPosition.x = tempPlayer->GetCenter();
+		PlayerPosition.y -= 150;
+		tempBall->UpdatePosition(PlayerPosition);
+		tempBall->SetVelocity(Vector2f(0, 1));
+		//tempBall->SetSpeed(22);
+	}
+}
+
 void MainGame::Cycle() 
 {
 
