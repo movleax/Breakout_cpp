@@ -15,3 +15,8 @@ sf::RenderWindow& GameProxy::GetWindowRef()
 {
 	return game->GetWindowRef();
 }
+
+Vector2u GameProxy::GetWindowDimensions()
+{
+	return game->GetWindowDimensions();
+}

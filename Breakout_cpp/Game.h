@@ -22,6 +22,7 @@ public:
 	void CheckCollisions() override;
 	void Cycle() override;
 	sf::RenderWindow& GetWindowRef();
+	Vector2u GetWindowDimensions();
 };
 
 

@@ -5,7 +5,10 @@
 int main()
 {
     Game game;
-    game.LoadGameState(new MainGame(new GameProxy(&game)));
+    GameProxy* gameProxy = new GameProxy(&game);
+    MainGame* mainGame = new MainGame(gameProxy);
+
+    game.LoadGameState(mainGame);
     game.Cycle();
 
     return 0;

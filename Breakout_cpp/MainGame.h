@@ -12,7 +12,7 @@ class MainGame : public GameState
 	//vector<Shape*> shapes; // temporary for testing
 	unsigned hBall;
 public:
-	MainGame(const GameProxy* proxy);
+	MainGame(GameProxy* proxy);
 	~MainGame();
 	void StartGame();
 	void ResetPlayerAndBall();

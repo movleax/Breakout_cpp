@@ -2,7 +2,7 @@
 
 
 Game::Game()
-	: window(VideoMode(800, 700), "SFML works!")
+	: window(VideoMode(800, 700), "Breakout!")
 {
 	// define a starting game state to load
 	// _gameState = new MainGame(...);
@@ -64,4 +64,9 @@ void Game::Cycle()
 RenderWindow& Game::GetWindowRef()
 {
 	return window;
+}
+
+Vector2u Game::GetWindowDimensions()
+{
+	return window.getSize();
 }

@@ -17,7 +17,7 @@ protected:
 	Input* input;
 	GameObjectCollection gameObjCollection;
 public:
-	GameState(const GameProxy* proxy);
+	GameState(GameProxy* proxy);
 	virtual ~GameState();
 	unsigned AddGameObject(GameObject* gameObj);
 	void AddInputHandler(Input* input);

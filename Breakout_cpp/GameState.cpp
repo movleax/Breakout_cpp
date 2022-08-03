@@ -6,9 +6,9 @@
 
 using namespace std;
 
-GameState::GameState(const GameProxy* proxy)
+GameState::GameState(GameProxy* proxy)
 {
-
+	gameProxy = proxy;
 }
 GameState::~GameState()
 {

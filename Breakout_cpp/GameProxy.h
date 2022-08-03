@@ -15,6 +15,6 @@ public:
 	GameProxy(Game* game);
 	void LoadGameState(GameState* gameState);
 	sf::RenderWindow& GetWindowRef();
-
+	Vector2u GetWindowDimensions();
 };
 

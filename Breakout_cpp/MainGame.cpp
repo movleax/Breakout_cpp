@@ -15,7 +15,7 @@
 #include "ScoreText.h"
 #include "LivesText.h"
 
-MainGame::MainGame(const GameProxy* proxy)
+MainGame::MainGame(GameProxy* proxy)
 	: GameState(proxy)
 {
 
@@ -107,6 +107,7 @@ void MainGame::ResetPlayerAndBall()
 void MainGame::Logic() 
 {
 	(dynamic_cast<Ball*>(gameObjCollection[hBall]))->SetSpeed(rand() % 20 + 3);
+	Vector2u foo = gameProxy->GetWindowDimensions();
 	GameState::Logic();
 }
 void MainGame::Update() 
