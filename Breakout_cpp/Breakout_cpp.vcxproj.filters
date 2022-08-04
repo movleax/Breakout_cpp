@@ -96,6 +96,9 @@
     <ClCompile Include="LivesText.cpp">
       <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="StartGameCommand.cpp">
+      <Filter>Source Files\Input_Commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="DesignDocument.txt" />
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="LivesText.h">
       <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="StartGameCommand.h">
+      <Filter>Header Files\Input_Commands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

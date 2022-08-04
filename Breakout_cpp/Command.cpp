@@ -1,12 +1,12 @@
 #include "Command.h"
 
-Command::Command(GameObject* gameObj)
+Command::Command(void* OBJ)
 {
-	this->gameObj = gameObj;
+	this->obj = OBJ;
 }
 
 Command::~Command()
 {
-	delete gameObj;
-	gameObj = 0;
+	delete obj;
+	obj = 0;
 }

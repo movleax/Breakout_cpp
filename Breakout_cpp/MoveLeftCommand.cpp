@@ -9,15 +9,15 @@ MoveLeftCommand::MoveLeftCommand(Player* player)
 
 MoveLeftCommand::~MoveLeftCommand()
 {
-	delete gameObj;
-	gameObj = 0;
+	delete obj;
+	obj = 0;
 }
 
 void MoveLeftCommand::Execute()
 {
 	if (CheckCondition())
 	{
-		((Player*)gameObj)->SetVelocity(Vector2f(-1, 0));
+		((Player*)obj)->SetVelocity(Vector2f(-1, 0));
 	}
 }
 bool MoveLeftCommand::CheckCondition() // use sf::Keyboard::isKeyPressed(sf::Keyboard::Left)

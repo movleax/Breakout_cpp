@@ -5,9 +5,9 @@
 class Command
 {
 protected:
-	GameObject* gameObj;
+	void* obj;
 public:
-	Command(GameObject* gameObj);
+	Command(void* obj);
 	virtual ~Command();
 	virtual void Execute() = 0;
 	virtual bool CheckCondition() = 0;

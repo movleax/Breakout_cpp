@@ -12,6 +12,7 @@
 #include "MoveLeftCommand.h"
 #include "MoveRightCommand.h"
 #include "StopCommand.h"
+#include "StartGameCommand.h"
 #include "ScoreText.h"
 #include "LivesText.h"
 
@@ -39,14 +40,15 @@ MainGame::MainGame(GameProxy* proxy)
 	ScoreText* scoreText = new ScoreText(Vector2f(25,20), ptrPlayerProxy);
 	LivesText* livesText = new LivesText(Vector2f(600, 20), ptrPlayerProxy);
 
-
 	Input* input = new Input();
 	MoveLeftCommand* moveLeftCmd = new MoveLeftCommand(player);
 	MoveRightCommand* moveRightCmd = new MoveRightCommand(player);
 	StopCommand* stopCmd = new StopCommand(player);
+	StartGameCommand* startGameCmd = new StartGameCommand(this);
 	input->AddCommand(moveLeftCmd);
 	input->AddCommand(moveRightCmd);
 	input->AddCommand(stopCmd);
+	input->AddCommand(startGameCmd);
 
 	//AddGameObject(brick);
 	hPlayer = AddGameObject(player);
@@ -82,11 +84,12 @@ MainGame::~MainGame()
 }
 void MainGame::StartGame()
 {
-
+	gameHasStarted = true;
+	// Make Start Game text toggle off here
 }
 void MainGame::ResetPlayerAndBall()
 {
-
+	
 }
 
 //void MainGame::Draw() 
@@ -106,11 +109,11 @@ void MainGame::ResetPlayerAndBall()
 
 void MainGame::Logic() 
 {
-	
 	GameState::Logic();
 }
 void MainGame::Update() 
 {
+	if (!gameHasStarted) return;
 	GameState::Update();
 }
 void MainGame::CheckCollisions() 
@@ -135,6 +138,8 @@ void MainGame::CheckBallOutBounds()
 		tempBall->UpdatePosition(PlayerPosition);
 		tempBall->SetVelocity(Vector2f(0, 1));
 		//tempBall->SetSpeed(22);
+		gameHasStarted = false;
+		// Make Start Game text toggle on here
 	}
 }
 

@@ -9,15 +9,15 @@ StopCommand::StopCommand(Player* player)
 
 StopCommand::~StopCommand()
 {
-	delete gameObj;
-	gameObj = 0;
+	delete obj;
+	obj = 0;
 }
 
 void StopCommand::Execute()
 {
 	if (CheckCondition())
 	{
-		((Player*)gameObj)->SetVelocity(Vector2f(0, 0));
+		((Player*)obj)->SetVelocity(Vector2f(0, 0));
 	}
 }
 bool StopCommand::CheckCondition() // use sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
