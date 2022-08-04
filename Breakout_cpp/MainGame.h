@@ -9,7 +9,7 @@ using namespace sf;
 class MainGame : public GameState
 {
 	bool gameHasStarted;
-	//vector<Shape*> shapes; // temporary for testing
+	unsigned hStartText;
 	unsigned hBall;
 	unsigned hPlayer;
 public:

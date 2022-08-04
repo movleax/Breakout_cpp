@@ -13,6 +13,6 @@ public:
 	GameText(const Vector2f& Position, string Text, string fontFileName, bool Bold, unsigned Size, sf::Color color);
 	~GameText();
 	Vector2f GetCenter();
-	void Draw(sf::RenderWindow* window);
+	virtual void Draw(sf::RenderWindow* window);
 };
 

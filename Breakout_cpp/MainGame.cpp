@@ -15,6 +15,7 @@
 #include "StartGameCommand.h"
 #include "ScoreText.h"
 #include "LivesText.h"
+#include "StartText.h"
 
 MainGame::MainGame(GameProxy* proxy)
 	: GameState(proxy)
@@ -39,6 +40,9 @@ MainGame::MainGame(GameProxy* proxy)
 
 	ScoreText* scoreText = new ScoreText(Vector2f(25,20), ptrPlayerProxy);
 	LivesText* livesText = new LivesText(Vector2f(600, 20), ptrPlayerProxy);
+	StartText* startText = new StartText(Vector2f(170, 300));
+	startText->Show();
+
 
 	Input* input = new Input();
 	MoveLeftCommand* moveLeftCmd = new MoveLeftCommand(player);
@@ -53,6 +57,7 @@ MainGame::MainGame(GameProxy* proxy)
 	//AddGameObject(brick);
 	hPlayer = AddGameObject(player);
 	hBall = AddGameObject(ball);
+
 	//AddGameObject(ptr_Wall);
 
 	
@@ -75,7 +80,9 @@ MainGame::MainGame(GameProxy* proxy)
 
 	AddGameObject(scoreText);
 	AddGameObject(livesText);
+	hStartText = AddGameObject(startText);
 
+	
 	this->AddInputHandler(input);
 }
 MainGame::~MainGame()
@@ -85,6 +92,9 @@ MainGame::~MainGame()
 void MainGame::StartGame()
 {
 	gameHasStarted = true;
+	StartText* startText = dynamic_cast<StartText*> (gameObjCollection[hStartText]);
+	startText->Hide();
+
 	// Make Start Game text toggle off here
 }
 void MainGame::ResetPlayerAndBall()
@@ -140,6 +150,8 @@ void MainGame::CheckBallOutBounds()
 		//tempBall->SetSpeed(22);
 		gameHasStarted = false;
 		// Make Start Game text toggle on here
+		StartText* startText = dynamic_cast<StartText*> (gameObjCollection[hStartText]);
+		startText->Show();
 	}
 }
 
