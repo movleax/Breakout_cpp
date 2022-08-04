@@ -168,6 +168,8 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerProxy.cpp" />
     <ClCompile Include="ScoreText.cpp" />
+
+    <ClCompile Include="StartText.cpp" />
     <ClCompile Include="StartGameCommand.cpp" />
     <ClCompile Include="StopCommand.cpp" />
     <ClCompile Include="Wall.cpp" />
@@ -197,6 +199,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerProxy.h" />
     <ClInclude Include="ScoreText.h" />
+    <ClInclude Include="StartText.h" />
     <ClInclude Include="StartGameCommand.h" />
     <ClInclude Include="StopCommand.h" />
     <ClInclude Include="Utility_Collisions.h" />
