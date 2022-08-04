@@ -87,14 +87,14 @@
     <ClCompile Include="ScoreText.cpp">
       <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="LivesText.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameObjectCollection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameProxy.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LivesText.cpp">
+      <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -167,11 +167,11 @@
     <ClInclude Include="ScoreText.h">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="LivesText.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectCollection.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LivesText.h">
+      <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
