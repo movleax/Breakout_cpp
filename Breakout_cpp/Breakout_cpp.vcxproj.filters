@@ -25,6 +25,12 @@
     <Filter Include="Header Files\Input_Commands">
       <UniqueIdentifier>{1835f59a-5a04-42af-8981-f55c5207a1b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameSounds">
+      <UniqueIdentifier>{3ba95c93-c4c9-4df6-b872-46e79af5b9de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameSounds">
+      <UniqueIdentifier>{8755175e-9cb2-4c78-af28-85506a4a8d7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -101,6 +107,12 @@
     </ClCompile>
     <ClCompile Include="StartGameCommand.cpp">
       <Filter>Source Files\Input_Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundBufferCollection.cpp">
+      <Filter>Source Files\GameSounds</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundPlayer.cpp">
+      <Filter>Source Files\GameSounds</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +196,12 @@
     </ClInclude>
     <ClInclude Include="StartText.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundBufferCollection.h">
+      <Filter>Header Files\GameSounds</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundPlayer.h">
+      <Filter>Header Files\GameSounds</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

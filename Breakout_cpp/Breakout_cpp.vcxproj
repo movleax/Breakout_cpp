@@ -125,7 +125,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(DEV_LIBRARIES)\GnuWin32\lib;$(DEV_LIBRARIES)\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>freetype.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>freetype.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-window-d.lib;sfml-system-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -168,7 +168,8 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerProxy.cpp" />
     <ClCompile Include="ScoreText.cpp" />
-
+    <ClCompile Include="SoundBufferCollection.cpp" />
+    <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="StartText.cpp" />
     <ClCompile Include="StartGameCommand.cpp" />
     <ClCompile Include="StopCommand.cpp" />
@@ -199,6 +200,8 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerProxy.h" />
     <ClInclude Include="ScoreText.h" />
+    <ClInclude Include="SoundBufferCollection.h" />
+    <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="StartText.h" />
     <ClInclude Include="StartGameCommand.h" />
     <ClInclude Include="StopCommand.h" />
